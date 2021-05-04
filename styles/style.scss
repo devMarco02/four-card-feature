@@ -1,0 +1,227 @@
+//=============VARIABLES
+:root {
+  --ff-primary: "Poppins", sans-serif;
+
+  --fw-light: 200;
+  --fw-reg: 400;
+  --fw-bold: 600;
+
+  --fs-h1: 1.5rem;
+  --fs-h2: 1.2rem;
+  --fs-body: 0.85rem;
+
+  //===colors
+  // primary
+  --red: hsl(0, 78%, 62%);
+  --cyan: hsl(180, 62%, 55%);
+  --orange: hsl(34, 97%, 64%);
+  --blue: hsl(212, 86%, 64%);
+
+  // neutral
+  --very-dark-blue: hsl(234, 12%, 34%);
+  --grayish-blue: hsl(229, 6%, 66%);
+  --very-light-gray: hsl(0, 0%, 98%);
+
+  //box-shadow
+  --bs: 0 0.9em 1.25em rgba(2, 68, 143, 0.15);
+}
+
+@media (min-width: 800px) {
+  :root {
+    --fs-h1: 2rem;
+    --fs-body: 0.95rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --fs-h1: 2.55rem;
+    --fs-h2: 1.25rem;
+  }
+}
+
+//=============RESET
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+//=============BASE STYLES (styles that doesn't change whatever the size of the screen)
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--very-light-gray);
+}
+
+main {
+  min-height: calc(100vh - 44.8px);
+  width: 85vw;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+}
+
+.card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--bs);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+  }
+
+  &__img {
+    width: 55px;
+    display: block;
+    margin-left: auto;
+    margin-top: auto;
+  }
+
+  &--supervisor::before {
+    background: var(--cyan);
+  }
+  &--team-builder::before {
+    background: var(--red);
+  }
+  &--karma::before {
+    background: var(--orange);
+  }
+  &--calculator::before {
+    background: var(--blue);
+  }
+}
+
+.attribution {
+  padding: 1rem;
+}
+
+//===============FONTS
+body {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-reg);
+  color: var(--grayish-blue);
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-light);
+  color: var(--very-dark-blue);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  color: var(--very-dark-blue);
+}
+
+.intro {
+  text-align: center;
+
+  &__body {
+    font-size: 0.95rem;
+    font-weight: var(--fw-reg);
+    @media screen and (min-width: 800px) {
+      font-size: 1rem;
+    }
+    @media screen and (min-width: 1200px) {
+      font-size: 1.05rem;
+    }
+  }
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+  color: var(--very-dark-blue);
+  &__link {
+    color: hsl(228, 45%, 44%);
+  }
+}
+
+//================MAIN STYLES / LAYOUT
+
+main {
+  padding-top: 44.8px;
+}
+
+section {
+  margin-bottom: 2rem;
+  @media screen and (min-width: 800px) {
+    margin: 0;
+  }
+}
+
+.sections-container {
+  max-width: 400px;
+  @media screen and (min-width: 800px) {
+    max-width: 1200px;
+    margin-bottom: 4rem;
+  }
+}
+
+.cards-container {
+  @media screen and (min-width: 800px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 2vw;
+  }
+}
+
+//====INTRO / MAIN TITLE
+
+.intro {
+  margin: 0 auto 4rem;
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+
+  strong {
+    display: block;
+  }
+
+  @media screen and (min-width: 800px) {
+    max-width: 500px;
+  }
+  @media screen and (min-width: 1200px) {
+    max-width: 600px;
+  }
+}
+
+//===CARDS
+
+.card {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  &__body {
+    margin: 0.5rem 0 2.5rem;
+  }
+
+  @media screen and (min-width: 800px) {
+    &--supervisor,
+    &--calculator {
+      grid-row: 2/4;
+    }
+
+    &--team-builder {
+      grid-row: 1/3;
+    }
+
+    &--karma {
+      grid-row: 3/5;
+    }
+  }
+}
